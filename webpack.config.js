@@ -9,8 +9,11 @@ module.exports = {
     app: './src/index.ts'
   },
   devtool: 'source-map', // Generate separate source map files
+  output: {
+    path: path.resolve(__dirname, './docs')
+  },
   devServer: {
-    contentBase: './dist',
+    contentBase: './docs',
     overlay: true // Show errors in overlay on the website
   },
   module: {

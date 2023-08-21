@@ -1,0 +1,11 @@
+<div class="category__header" data-bind="class: addClass">
+  <div class="icon icon-open" data-bind="component: { name: 'icon-open' }, click: onClickIcon"></div>
+
+  <!-- ko text: label --><!-- /ko -->
+
+  <div class="icon icon-draggable" data-bind="component: { name: 'icon-draggable' }"></div>
+</div>
+
+<div class="category__content" data-bind="slideVisible: open"><!-- ko foreach: children -->
+  <div class="item" data-bind='component: { name: "item", params: $data }'></div>
+  <!-- /ko --></div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knockout Тестовая задача</title>
+
+  <!-- link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous" -->
+
+</head>
+<body>
+
+  <main class="main">
+    <!-- ko foreach: categories -->
+    <div class="category" data-bind='component: { name: "category", params: $data }'></div>
+    <!-- /ko -->
+
+    <pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
+  </main>
+</body>
+</html>

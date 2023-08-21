@@ -1,0 +1,39 @@
+.category__header
+  // height: 48px
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  align-items: center
+  padding: 14px 14px 14px 16px
+  gap: 14px
+  border: 1px solid #DFE4EF
+  margin-top: -1px
+
+  .icon-open
+    cursor: pointer
+    transition: transform 0.5s ease
+
+.category__open
+  .icon-open
+    transform: rotate(180deg)
+  & + .category__content
+
+
+.icon-draggable
+  cursor: move
+  margin-left: auto
+  &:hover, &:active
+    color: #0066FF
+
+.category__content
+  margin-left: 16px
+  display: none
+  &:empty
+    height: 10px
+    // margin-top: -1px
+    // transition: border 1ms ease .5s
+    $border: 1px solid #DFE4EF
+    border-right: $border
+    border-bottom: $border
+    border-left: $border
+

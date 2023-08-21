@@ -1,0 +1,47 @@
+{
+  "name": "knockout-typescript",
+  "version": "1.2.0",
+  "description": "An example of using TypeScript and Knockout’s type definitions to create view models, components and bindings that are strongly typed.",
+  "scripts": {
+    "serve": "webpack serve --open --port=8086",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jquery": "^3.7.0",
+    "knockout": "^3.5.1",
+    "knockout.filter": "^0.0.11",
+    "knockout.slot": "^0.0.2",
+    "knockout.validation": "^2.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jquery": "^3.5.16",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.8.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^5.3.1",
+    "json-loader": "^0.5.7",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.28",
+    "postcss-loader": "^7.3.3",
+    "postcss-preset-env": "^9.1.1",
+    "sass": "^1.66.1",
+    "sass-loader": "^13.3.2",
+    "typescript": "^4.2.3",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "not dead"
+  ],
+  "keywords": [],
+  "author": "Jon Keeping",
+  "license": "ISC"
+}

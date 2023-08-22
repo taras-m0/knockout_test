@@ -41,7 +41,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './webpack-template/index.html'
+      template: './webpack-template/index.html',
+      minify: false
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css', // Формат имени файла
@@ -53,5 +54,8 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.ts']
+  },
+  stats: {
+    children: true
   }
 };

@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "autoprefixer": "10.4.5",
     "jquery": "^3.7.0",
     "knockout": "^3.5.1",
     "knockout.filter": "^0.0.11",

@@ -1,4 +1,5 @@
 import * as ko from "knockout";
+import './bindings/dragndrop';
 
 ko.bindingHandlers.slideVisible = {
   update: function(element, valueAccessor, allBindings) {
@@ -18,3 +19,4 @@ ko.bindingHandlers.slideVisible = {
       $(element).slideUp(duration);   // Делаем элемент невидимым
   }
 };
+

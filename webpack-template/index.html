@@ -16,7 +16,7 @@
 
   <main class="main">
     <!-- ko foreach: categories -->
-    <div class="category" data-bind='component: { name: "category", params: $data }'></div>
+    <div class="category" data-bind='component: { name: "category", params: $data }, draggable: {a: 1}'></div>
     <!-- /ko -->
 
     <pre data-bind="text: ko.toJSON($root, null, 2)"></pre>

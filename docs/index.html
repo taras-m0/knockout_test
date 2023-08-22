@@ -1,24 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Knockout Тестовая задача</title>
-
-  <!-- link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous" -->
-
-  <script defer src="/knockout_test/app.js"></script><link href="/knockout_test/app.d1ea2aa207e6c1939ee1.css" rel="stylesheet"></head>
+  <script defer="defer" src="/knockout_test/app.js"></script>
+  <link href="/knockout_test/app.1d4daf515475dbe6175e.css" rel="stylesheet">
+</head>
 <body>
-
 <main class="main">
-  <!-- ko foreach: categories -->
-  <div class="category" data-bind='component: { name: "category", params: $data }'></div>
-  <!-- /ko -->
-
+  <div class="category" data-bind='component: { name: "category", params: $data }, draggable: {a: 1}'></div>
   <pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
 </main>
 </body>

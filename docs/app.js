@@ -11,7 +11,9 @@
       __webpack_require__.r(__webpack_exports__);
       /* harmony import */ var knockout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! knockout */ "./node_modules/knockout/build/output/knockout-latest.js");
       /* harmony import */ var knockout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(knockout__WEBPACK_IMPORTED_MODULE_0__);
+      /* harmony import */ var _bindings_dragndrop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bindings/dragndrop */ "./src/bindings/dragndrop.ts");
       /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
 
       knockout__WEBPACK_IMPORTED_MODULE_0__.bindingHandlers.slideVisible = {
         update: function (element, valueAccessor, allBindings) {
@@ -27,6 +29,105 @@
           // Теперь манипулируем элементом DOM
           if (valueUnwrapped == true) $(element).slideDown(duration); // Делаем элемент видимым
           else $(element).slideUp(duration); // Делаем элемент невидимым
+        }
+      };
+
+      /***/ }),
+
+    /***/ "./src/bindings/dragndrop.ts":
+    /*!***********************************!*\
+  !*** ./src/bindings/dragndrop.ts ***!
+  \***********************************/
+    /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony import */ var knockout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! knockout */ "./node_modules/knockout/build/output/knockout-latest.js");
+      /* harmony import */ var knockout__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(knockout__WEBPACK_IMPORTED_MODULE_0__);
+      /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+      function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+      function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+      function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+      function disableSelect(event) {
+        event.preventDefault();
+      }
+      const dragNDrop = new class {
+        constructor() {
+          _defineProperty(this, "dragElement", void 0);
+          _defineProperty(this, "origElement", void 0);
+          _defineProperty(this, "offsetPosition", {
+            x: 0,
+            y: 0
+          });
+        }
+        dragStart(element, mousePosition) {
+          this.origElement = element;
+          const offset = $(element).offset();
+          const copyEl = $(element).clone(false).appendTo('body').height($(element).height()).width($(element).width()).css({
+            position: 'absolute',
+            background: 'white',
+            boxShadow: '0px 3px 16px 0px #0066FFB2',
+            transition: 'box-shadow 0.5s ease'
+          }).offset({
+            top: offset.top,
+            left: offset.left
+          });
+          this.dragElement = copyEl.get(0);
+          $(element).css({
+            filter: 'opacity( 0.5 )'
+          });
+          this.offsetPosition = {
+            x: mousePosition.x - offset.left,
+            y: mousePosition.y - offset.top
+          };
+          window.addEventListener('selectstart', disableSelect);
+        }
+        mouseUp(e) {
+          // console.log('mouseUp', e);
+          if (!this.dragElement) {
+            return;
+          }
+          $(this.dragElement).fadeOut(300, function () {
+            $(this).remove();
+          });
+          $(this.origElement).css({
+            filter: 'none'
+          });
+          window.removeEventListener('selectstart', disableSelect);
+        }
+        mouseMove(e) {
+          // console.log('mouseUp', e);
+          if (!this.dragElement) {
+            return;
+          }
+          $(this.dragElement).offset({
+            top: e.clientY - this.offsetPosition.y,
+            left: e.clientX - this.offsetPosition.x
+          });
+        }
+      }();
+      window.addEventListener('mouseup', dragNDrop.mouseUp.bind(dragNDrop));
+      window.addEventListener('mousemove', dragNDrop.mouseMove.bind(dragNDrop));
+      knockout__WEBPACK_IMPORTED_MODULE_0__.bindingHandlers.draggable = {
+        init: function (element, valueAccessor, allBindings, viewModel) {
+          // console.log('init', arguments, this);
+
+          const valueUnwrapped = knockout__WEBPACK_IMPORTED_MODULE_0__.unwrap(valueAccessor());
+          // console.log('valueUnwrapped', valueUnwrapped, viewModel, valueAccessor());
+          // console.log('valueAccessor', valueAccessor,  valueAccessor());
+          // const isPopulatedArray = Array.isArray(valueUnwrapped) && valueUnwrapped.length > 0;
+          // const text = isPopulatedArray ? valueUnwrapped.join(', ') : 'Unknown';
+
+          Promise.resolve().then(() => {
+            $('.icon-draggable:first', element).on('mousedown', function (e) {
+              // console.log('mousedown', e);
+              dragNDrop.dragStart(element, {
+                x: e.originalEvent.clientX,
+                y: e.originalEvent.clientY
+              });
+            });
+          });
         }
       };
 

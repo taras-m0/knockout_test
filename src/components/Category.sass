@@ -20,10 +20,12 @@
 
 
 .icon-draggable
-  cursor: move
+  cursor: pointer
   margin-left: auto
   &:hover, &:active
     color: #0066FF
+  &:focus, &:active, &:focus-within
+    cursor: move
 
 .category__content
   margin-left: 16px

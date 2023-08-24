@@ -31,4 +31,16 @@ export default class Category {
 
     this.children = ko.observableArray( params.children);
   }
+
+  showPlanetElement(elem: HTMLElement) {
+    console.log('showPlanetElement', elem);
+    if (elem.nodeType === 1) $(elem).hide().slideDown()
+  }
+
+  hidePlanetElement(elem: HTMLElement) {
+    if (elem.nodeType === 1) $(elem).slideUp( 500,function () {
+      $(elem).remove();
+    })
+  }
+
 }
